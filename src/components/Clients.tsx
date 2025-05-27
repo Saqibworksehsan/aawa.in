@@ -1,4 +1,5 @@
 import React from 'react';
+import { getImagePath } from '../utils/imagePaths';
 
 interface Client {
   id: number;
@@ -73,14 +74,14 @@ const Clients: React.FC = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {clientData.map((client) => (
-            <div 
-              key={client.id} 
+            <div
+              key={client.id}
               className="bg-white p-6 rounded-lg shadow-md flex items-center justify-center hover:shadow-lg transition-shadow duration-300"
             >
               <div className="h-24 flex items-center justify-center">
-                <img 
-                  src={client.logo} 
-                  alt={client.name} 
+                <img
+                  src={getImagePath(client.logo)}
+                  alt={client.name}
                   className="max-h-full max-w-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
                 />
               </div>

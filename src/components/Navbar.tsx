@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getImagePath } from '../utils/imagePaths';
 
 const navLinks = [
   { name: 'Home', href: '/', type: 'route' },
@@ -36,7 +37,7 @@ const Navbar: React.FC = () => {
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center">
               <img
-                src="/logo2.png"
+                src={getImagePath("/logo2.png")}
                 alt="AAWA SHOES LLP"
                 className="h-10 w-auto mr-3"
               />

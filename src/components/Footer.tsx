@@ -1,6 +1,7 @@
 import React from 'react';
 import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getImagePath } from '../utils/imagePaths';
 
 const Footer: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const Footer: React.FC = () => {
           <div>
             <div className="flex items-center mb-4">
               <img
-                src="/logo2.png"
+                src={getImagePath("/logo2.png")}
                 alt="AAWA SHOES LLP"
                 className="h-8 w-auto mr-3 filter brightness-0 invert"
               />
