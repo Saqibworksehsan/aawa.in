@@ -14,7 +14,7 @@ const productData: Product[] = [
     id: 1,
     name: "Men's Formal",
     description: "Premium handcrafted formal shoes with genuine leather uppers and hand-stitched details.",
-    imageUrl: "https://images.pexels.com/photos/10894/pexels-photo-10894.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    imageUrl: "https://images.pexels.com/photos/5264896/pexels-photo-5264896.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     category: "Formal"
   },
   {
