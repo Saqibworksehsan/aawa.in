@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+/* Add custom styles for leather-inspired colors */
+@layer utilities {
+  .bg-brown-100 {
+    background-color: #F5F0E6;
+  }
+  .bg-brown-200 {
+    background-color: #E6D8C9;
+  }
+  .bg-brown-300 {
+    background-color: #D2B48C;
+  }
+  .bg-brown-400 {
+    background-color: #C19A6B;
+  }
+  .bg-brown-500 {
+    background-color: #A67B5B;
+  }
+  .bg-brown-600 {
+    background-color: #8B4513;
+  }
+  .bg-brown-700 {
+    background-color: #6B3811;
+  }
+  .bg-brown-800 {
+    background-color: #59300F;
+  }
+  .bg-brown-900 {
+    background-color: #3D210A;
+  }
+
+  .text-brown-100 {
+    color: #F5F0E6;
+  }
+  .text-brown-200 {
+    color: #E6D8C9;
+  }
+  .text-brown-300 {
+    color: #D2B48C;
+  }
+  .text-brown-400 {
+    color: #C19A6B;
+  }
+  .text-brown-500 {
+    color: #A67B5B;
+  }
+  .text-brown-600 {
+    color: #8B4513;
+  }
+  .text-brown-700 {
+    color: #6B3811;
+  }
+  .text-brown-800 {
+    color: #59300F;
+  }
+  .text-brown-900 {
+    color: #3D210A;
+  }
+}
+
+/* Add smooth transitions to all interactive elements */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Add custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A67B5B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8B4513;
+}
