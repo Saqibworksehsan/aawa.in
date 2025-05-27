@@ -6,8 +6,10 @@ import ContactPage from './pages/ContactPage';
 import './styles/tailwind.css';
 
 function App() {
+  const basename = import.meta.env.PROD ? '/aawa.in' : '';
+
   return (
-    <Router>
+    <Router basename={basename}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/products" element={<ProductsPage />} />
