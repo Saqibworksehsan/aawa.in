@@ -66,12 +66,8 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between">
-          <p>&copy; {new Date().getFullYear()}  ARQAM CREATIONS. All rights reserved.</p>
-          <div className="mt-4 md:mt-0">
-            <a href="#" className="mr-4 hover:text-white transition-colors duration-300">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors duration-300">Terms of Service</a>
-          </div>
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+          <p>&copy; {new Date().getFullYear()} ARQAM CREATIONS. All rights reserved.</p>
         </div>
       </div>
     </footer>
