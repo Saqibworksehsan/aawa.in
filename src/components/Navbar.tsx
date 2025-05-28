@@ -5,6 +5,7 @@ import { getImagePath } from '../utils/imagePaths';
 
 const navLinks = [
   { name: 'Home', href: '/', type: 'route' },
+  { name: 'About', href: '/about', type: 'route' },
   { name: 'Products', href: '/products', type: 'route' },
   { name: 'Contact', href: '/contact', type: 'route' },
 ];
