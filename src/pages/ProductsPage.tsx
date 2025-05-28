@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -143,6 +144,7 @@ const productData: Product[] = [
 const categories = ["All", "Formal", "Casual", "Sneakers", "Boots"];
 
 const ProductsPage: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
@@ -293,10 +295,14 @@ const ProductsPage: React.FC = () => {
                   </div>
 
                   <div className="flex space-x-4">
-                    <button className="flex-1 bg-brown-600 text-white font-medium py-3 px-6 rounded-md hover:bg-brown-700 transition-colors duration-300">
+                    <button 
+                      onClick={() => navigate('/contact')}
+                      className="flex-1 bg-brown-600 text-white font-medium py-3 px-6 rounded-md hover:bg-brown-700 transition-colors duration-300">
                       Request Quote
                     </button>
-                    <button className="flex-1 bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-md hover:bg-gray-300 transition-colors duration-300">
+                    <button 
+                      onClick={() => navigate('/contact')}
+                      className="flex-1 bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-md hover:bg-gray-300 transition-colors duration-300">
                       Contact Us
                     </button>
                   </div>
@@ -313,3 +319,4 @@ const ProductsPage: React.FC = () => {
 };
 
 export default ProductsPage;
+
