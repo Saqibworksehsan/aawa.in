@@ -117,15 +117,13 @@ Best regards,`);
 
             <div className="mt-8 h-64 rounded-lg overflow-hidden shadow-md">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31281.62811025168!2d78.6937!3d12.7891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5375e079ff8d05%3A0x27e346fe1f21c64a!2sAmbur%2C%20Tamil%20Nadu%2C%20India!5e0!3m2!1sen!2sus!4v1686821184564!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="AAWA SHOES LLP Location"
-              ></iframe>
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3903.040392292501!2d78.731497!3d12.81169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bad0925ca53c77f%3A0x60331b256f854432!2sSomalapuram%20Rd%2C%20Bavaravuthampattadai%2C%20Tamil%20Nadu%20635802!5e0!3m2!1sen!2sin!4v1721836000000"
+  width="100%"
+  height="350"
+  style="border:0;"
+  allowfullscreen=""
+  loading="lazy"
+></iframe>
             </div>
           </div>
 
