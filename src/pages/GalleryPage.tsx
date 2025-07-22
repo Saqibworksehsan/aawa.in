@@ -14,109 +14,88 @@ const GalleryPage: React.FC = () => (
   <div className="min-h-screen bg-neutral-900 text-white">
     <Navbar />
 
-    {/* ---------- HERO ---------- */}
-    <section className="py-16 md:py-24 bg-gradient-to-r from-amber-600 via-amber-500 to-rose-500">
+    {/* ---------- TITLE + INTRO ---------- */}
+    <section className="py-16 md:py-20 bg-gradient-to-r from-amber-600 to-rose-600">
       <div className="container mx-auto px-6 text-center">
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-xl">
-          AAWA Gallery
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight">
+          36 Moments of Craft
         </h1>
-        <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
-          36 snapshots of our hand-crafted journey—from raw hide to runway-ready pairs.
+        <p className="mt-3 text-lg md:text-xl max-w-3xl mx-auto">
+          Scroll through every step that turns raw hide into heirloom footwear.
         </p>
       </div>
     </section>
 
-    {/* ---------- 36-IMAGE HORIZONTAL SLIDER ---------- */}
-    <section className="py-8">
-      <div className="flex overflow-x-auto snap-x snap-mandatory space-x-8 px-6 pb-12">
-        {slides.map((slide) => (
-          <div
-            key={slide.id}
-            className="snap-center shrink-0 w-[300px] md:w-[400px] rounded-2xl overflow-hidden shadow-xl bg-neutral-800"
-          >
-            <div className="aspect-[4/3] flex items-center justify-center p-3">
-              <img
-                src={slide.src}
-                alt={slide.alt}
-                className="w-full h-full object-contain rounded-xl"
-              />
-            </div>
-            <div className="p-3 text-center text-sm font-medium">
-              {slide.alt}
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    {/* ---------- HAND-CRACK LEATHER SECTION ---------- */}
-    <section className="py-16 md:py-24 bg-neutral-800">
-      <div className="container mx-auto px-6 max-w-5xl space-y-10">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-amber-400">
-              Hand-crafted Leather Selection
-            </h2>
-            <p className="mt-4 text-lg text-gray-300 leading-relaxed">
-              Every AAWA shoe begins with a single sheet of full-grain leather.  
-              Our artisans hand-crack each hide to reveal natural grain patterns,  
-              ensuring only the strongest sections are cut for lasting durability.
-            </p>
-          </div>
-          <div className="aspect-video bg-neutral-700 rounded-xl flex items-center justify-center">
-            <p className="text-neutral-500 italic">— Leather selection process —</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    {/* ---------- UNIQUE HAND-MADE STYLES ---------- */}
-    <section className="py-16 md:py-24 bg-neutral-900">
-      <div className="container mx-auto px-6 max-w-5xl space-y-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-amber-400">
-          Unique Hand-Made Styles
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { title: 'Classic Oxford', desc: 'Timeless brogue detailing & Goodyear welt' },
-            { title: 'Minimalist Loafer', desc: 'Clean lines, unlined nappa, rubber cup sole' },
-            { title: 'Rugged Chelsea', desc: 'Elastic gore, storm welt, oil-resistant lug' },
-          ].map((style) => (
+    {/* ---------- FULL 36-IMAGE SHOWCASE ---------- */}
+    <section className="py-12">
+      <div className="container mx-auto px-4">
+        <div className="flex overflow-x-auto snap-x snap-mandatory space-x-6 pb-8">
+          {slides.map((slide) => (
             <div
-              key={style.title}
-              className="bg-neutral-800 p-6 rounded-xl shadow-lg"
+              key={slide.id}
+              className="snap-center shrink-0 w-[85vw] sm:w-[400px] md:w-[500px] rounded-2xl overflow-hidden shadow-2xl bg-neutral-800"
             >
-              <h3 className="text-xl font-semibold text-amber-300 mb-2">
-                {style.title}
-              </h3>
-              <p className="text-gray-400">{style.desc}</p>
+              <div className="aspect-video flex items-center justify-center p-2">
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  loading="lazy"
+                  className="w-full h-full object-contain rounded-xl"
+                />
+              </div>
+              <div className="p-3 text-center text-sm font-medium">
+                {slide.alt}
+              </div>
             </div>
           ))}
         </div>
       </div>
     </section>
 
-    {/* ---------- MATERIAL SHOWCASE ---------- */}
+    {/* ---------- CONTENT BLOCKS ---------- */}
     <section className="py-16 md:py-24 bg-neutral-800">
-      <div className="container mx-auto px-6 max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-amber-400 mb-12">
-          Material Showcase
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            { title: 'Full-Grain Leather', desc: 'Natural scars & oils for patina' },
-            { title: 'Chrome-Free Tanning', desc: 'Eco-friendly dye, water saved' },
-            { title: 'Cork Insoles', desc: 'Moulds to foot, anti-bacterial' },
-            { title: 'Natural Rubber', desc: 'Flexible, recyclable sole' },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="bg-neutral-900 p-6 rounded-xl shadow-md"
-            >
-              <h4 className="font-bold text-amber-300">{item.title}</h4>
-              <p className="text-sm text-gray-400 mt-1">{item.desc}</p>
-            </div>
-          ))}
+      <div className="container mx-auto px-6 max-w-5xl space-y-12">
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-amber-400 mb-4">
+            Hand-Crack Leather Selection
+          </h2>
+          <p className="text-lg text-gray-300 leading-relaxed">
+            Each hide is inspected under natural light, hand-crack tested for strength, and only the
+            finest sections proceed to cutting. This guarantees durability and a unique patina over time.
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-amber-400 mb-4">
+            Unique Handmade Styles
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              { title: 'Classic Oxford', desc: 'Brogue detailing & Goodyear welt' },
+              { title: 'Minimalist Loafer', desc: 'Unlined nappa, rubber cup sole' },
+              { title: 'Rugged Chelsea', desc: 'Elastic gore & storm welt' },
+            ].map((style) => (
+              <div
+                key={style.title}
+                className="bg-neutral-900 p-6 rounded-xl shadow-md"
+              >
+                <h3 className="font-bold text-amber-300">{style.title}</h3>
+                <p className="text-sm text-gray-400 mt-1">{style.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 className="text-3xl md:text-4xl font-bold text-amber-400 mb-4">
+            Sustainable Materials & Tools
+          </h2>
+          <ul className="list-disc list-inside text-gray-300 space-y-2">
+            <li>Chrome-free tanning saves 1.6 million litres of water yearly</li>
+            <li>Natural rubber soles for flexibility & recyclability</li>
+            <li>Cork insoles that mould to the wearer’s foot</li>
+            <li>Hand-forged brass tools for edge burnish & detailing</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -124,7 +103,7 @@ const GalleryPage: React.FC = () => (
     {/* ---------- CTA ---------- */}
     <section className="py-16 bg-amber-600 text-center">
       <div className="container mx-auto px-6">
-        <h3 className="text-3xl font-bold mb-4">Want your own pair?</h3>
+        <h3 className="text-3xl font-bold mb-4">Ready for your pair?</h3>
         <a
           href="/contact"
           className="inline-block bg-white text-amber-700 font-semibold px-10 py-4 rounded-lg hover:bg-amber-100 transition"
