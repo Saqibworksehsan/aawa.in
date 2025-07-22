@@ -1,228 +1,141 @@
 // GalleryPage.tsx
-import React, { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const TOTAL_IMAGES = 36;
+const slides = Array.from({ length: TOTAL_IMAGES }, (_, i) => ({
+  id: i,
+  src: `/images/${i + 1}.png`,
+  alt: `Store photo ${i + 1}`,
+}));
 
-const heroSlides = [
-  '/images/hero1.jpg',
-  '/images/hero2.jpg',
-  '/images/hero3.jpg',
-];
+const GalleryPage: React.FC = () => (
+  <div className="min-h-screen bg-neutral-900 text-white">
+    <Navbar />
 
-const GalleryPage: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const [current, setCurrent] = useState(0);
-  const [heroIndex, setHeroIndex] = useState(0);
-  const [loaded, setLoaded] = useState<boolean[]>([]);
+    {/* ---------- HERO ---------- */}
+    <section className="py-16 md:py-24 bg-gradient-to-r from-amber-600 via-amber-500 to-rose-500">
+      <div className="container mx-auto px-6 text-center">
+        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-xl">
+          AAWA Gallery
+        </h1>
+        <p className="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+          36 snapshots of our hand-crafted journey—from raw hide to runway-ready pairs.
+        </p>
+      </div>
+    </section>
 
-  useEffect(() => setLoaded(Array(TOTAL_IMAGES).fill(false)), []);
-
-  /* ---------- HERO SLIDER ---------- */
-  useEffect(() => {
-    const timer = setInterval(() => setHeroIndex((i) => (i + 1) % heroSlides.length), 5500);
-    return () => clearInterval(timer);
-  }, []);
-
-  const slides = Array.from({ length: TOTAL_IMAGES }, (_, i) => ({
-    id: i,
-    src: `/images/${i + 1}.png`,
-    alt: `Store photo ${i + 1}`,
-  }));
-
-  const next = useCallback(() => setCurrent((c) => (c + 1) % TOTAL_IMAGES), []);
-  const prev = useCallback(() => setCurrent((c) => (c - 1 + TOTAL_IMAGES) % TOTAL_IMAGES), []);
-
-  /* ---------- KEYBOARD ---------- */
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (!open) return;
-      if (e.key === 'ArrowRight') next();
-      if (e.key === 'ArrowLeft') prev();
-      if (e.key === 'Escape') setOpen(false);
-    };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [open, next, prev]);
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-50 via-stone-100 to-stone-200">
-      <Navbar />
-
-      {/* ---------- HERO SLIDER ---------- */}
-      <section className="relative h-[60vh] md:h-[72vh] overflow-hidden">
-        <AnimatePresence initial={false}>
-          <motion.div
-            key={heroIndex}
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${heroSlides[heroIndex]})` }}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 1.2, ease: 'easeInOut' }}
-          />
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-6 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-extrabold tracking-tight drop-shadow-xl"
+    {/* ---------- 36-IMAGE HORIZONTAL SLIDER ---------- */}
+    <section className="py-8">
+      <div className="flex overflow-x-auto snap-x snap-mandatory space-x-8 px-6 pb-12">
+        {slides.map((slide) => (
+          <div
+            key={slide.id}
+            className="snap-center shrink-0 w-[300px] md:w-[400px] rounded-2xl overflow-hidden shadow-xl bg-neutral-800"
           >
-            AAWA Gallery
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-4 text-lg md:text-xl max-w-3xl drop-shadow-md"
-          >
-            From hand-cut leather to finished pairs—step inside our world of craftsmanship.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ---------- STORY SECTION ---------- */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-6 max-w-4xl space-y-8 text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-amber-900"
-          >
-            Hand-Crafted Heritage
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-gray-700 leading-relaxed"
-          >
-            At AAWA Shoes LLP every pair begins its journey on the cutting table in Somalapuram,
-            Tamil Nadu. Artisans hand-select full-grain hides, cut each pattern with millimetre
-            precision, and stitch every seam with silk thread. Our Goodyear-welted soles are
-            built to last decades, while chrome-free tanning saves 1.6 million litres of water
-            annually. From dawn sketches to dusk finishes, tradition meets innovation—one stitch
-            at a time.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* ---------- MASONRY GALLERY ---------- */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-center mb-12"
-          >
-            Behind the Scenes
-          </motion.h2>
-          <motion.div
-            layout
-            className="columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6"
-          >
-            {slides.map((img, i) => (
-              <motion.div
-                key={img.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: loaded[i] ? 1 : 0, scale: loaded[i] ? 1 : 0.9 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5 }}
-                className="break-inside-avoid rounded-2xl overflow-hidden shadow-lg hover:shadow-amber-500/30 cursor-pointer relative group"
-                onClick={() => { setCurrent(i); setOpen(true); }}
-              >
-                {!loaded[i] && (
-                  <div className="w-full h-56 bg-stone-200 animate-pulse rounded-2xl" />
-                )}
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  onLoad={() =>
-                    setLoaded((l) => l.map((v, idx) => (idx === i ? true : v)))
-                  }
-                  className={`w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 ${
-                    loaded[i] ? 'block' : 'hidden'
-                  }`}
-                />
-                {/* Brushed-gold border on hover */}
-                <div className="absolute inset-0 border-2 border-transparent group-hover:border-amber-400 rounded-2xl transition-colors duration-300 pointer-events-none" />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ---------- LIGHTBOX ---------- */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            onClick={() => setOpen(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
-              className="relative max-w-5xl max-h-[90vh] outline-none"
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="aspect-[4/3] flex items-center justify-center p-3">
               <img
-                src={slides[current].src}
-                alt={slides[current].alt}
-                className="rounded-xl shadow-2xl max-h-[85vh] w-auto"
+                src={slide.src}
+                alt={slide.alt}
+                className="w-full h-full object-contain rounded-xl"
               />
-              {/* Close */}
-              <button
-                onClick={() => setOpen(false)}
-                className="absolute -top-3 -right-3 bg-white text-black rounded-full w-10 h-10 flex items-center justify-center text-2xl font-light shadow-lg hover:bg-amber-500 transition"
-                aria-label="Close"
-              >
-                ×
-              </button>
+            </div>
+            <div className="p-3 text-center text-sm font-medium">
+              {slide.alt}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
 
-              {/* Prev / Next */}
-              <button
-                onClick={prev}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition"
-                aria-label="Previous"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={next}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 text-white rounded-full p-3 transition"
-                aria-label="Next"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+    {/* ---------- HAND-CRACK LEATHER SECTION ---------- */}
+    <section className="py-16 md:py-24 bg-neutral-800">
+      <div className="container mx-auto px-6 max-w-5xl space-y-10">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-amber-400">
+              Hand-crafted Leather Selection
+            </h2>
+            <p className="mt-4 text-lg text-gray-300 leading-relaxed">
+              Every AAWA shoe begins with a single sheet of full-grain leather.  
+              Our artisans hand-crack each hide to reveal natural grain patterns,  
+              ensuring only the strongest sections are cut for lasting durability.
+            </p>
+          </div>
+          <div className="aspect-video bg-neutral-700 rounded-xl flex items-center justify-center">
+            <p className="text-neutral-500 italic">— Leather selection process —</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-              {/* Caption */}
-              <div className="absolute bottom-4 left-4 text-white bg-black/40 px-4 py-2 rounded-md text-sm">
-                {slides[current].alt}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    {/* ---------- UNIQUE HAND-MADE STYLES ---------- */}
+    <section className="py-16 md:py-24 bg-neutral-900">
+      <div className="container mx-auto px-6 max-w-5xl space-y-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-amber-400">
+          Unique Hand-Made Styles
+        </h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { title: 'Classic Oxford', desc: 'Timeless brogue detailing & Goodyear welt' },
+            { title: 'Minimalist Loafer', desc: 'Clean lines, unlined nappa, rubber cup sole' },
+            { title: 'Rugged Chelsea', desc: 'Elastic gore, storm welt, oil-resistant lug' },
+          ].map((style) => (
+            <div
+              key={style.title}
+              className="bg-neutral-800 p-6 rounded-xl shadow-lg"
+            >
+              <h3 className="text-xl font-semibold text-amber-300 mb-2">
+                {style.title}
+              </h3>
+              <p className="text-gray-400">{style.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
 
-      <Footer />
-    </div>
-  );
-};
+    {/* ---------- MATERIAL SHOWCASE ---------- */}
+    <section className="py-16 md:py-24 bg-neutral-800">
+      <div className="container mx-auto px-6 max-w-5xl">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-amber-400 mb-12">
+          Material Showcase
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {[
+            { title: 'Full-Grain Leather', desc: 'Natural scars & oils for patina' },
+            { title: 'Chrome-Free Tanning', desc: 'Eco-friendly dye, water saved' },
+            { title: 'Cork Insoles', desc: 'Moulds to foot, anti-bacterial' },
+            { title: 'Natural Rubber', desc: 'Flexible, recyclable sole' },
+          ].map((item) => (
+            <div
+              key={item.title}
+              className="bg-neutral-900 p-6 rounded-xl shadow-md"
+            >
+              <h4 className="font-bold text-amber-300">{item.title}</h4>
+              <p className="text-sm text-gray-400 mt-1">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ---------- CTA ---------- */}
+    <section className="py-16 bg-amber-600 text-center">
+      <div className="container mx-auto px-6">
+        <h3 className="text-3xl font-bold mb-4">Want your own pair?</h3>
+        <a
+          href="/contact"
+          className="inline-block bg-white text-amber-700 font-semibold px-10 py-4 rounded-lg hover:bg-amber-100 transition"
+        >
+          Contact AAWA Shoes
+        </a>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+);
 
 export default GalleryPage;
